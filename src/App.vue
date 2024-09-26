@@ -30,7 +30,7 @@ export default {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            firstName: this.username,  // Исправлено на firstName
+            firstName: this.username, 
             password: this.password,
           }),
         });
@@ -38,7 +38,7 @@ export default {
         const data = await response.json();
         console.log(data);
 
-        // Здесь вы можете добавить переход на страницу входа или другие действия
+
       } catch (error) {
         console.error('Ошибка при регистрации:', error);
       }

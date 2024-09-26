@@ -19,7 +19,6 @@ with app.app_context():
 @app.route('/register', methods=['POST', 'OPTIONS'])
 def register():
     if request.method == 'OPTIONS':
-        # Обработка запроса OPTIONS
         return jsonify(), 200
 
     try:
@@ -27,16 +26,16 @@ def register():
         firstName = data.get('firstName')
         password = data.get('password')
 
-        # Проверка наличия данных
+
         if not firstName or not password:
             return jsonify({'error': 'Имя и пароль обязательны для регистрации'}), 400
 
-        # Проверка наличия пользователя в базе данных
+
         existing_user = User.query.filter_by(firstName=firstName).first()
         if existing_user:
             return jsonify({'error': 'Пользователь с таким именем уже существует'}), 400
 
-        # Создание нового пользователя
+
         new_user = User(firstName=firstName, password=password)
         db.session.add(new_user)
         db.session.commit()
